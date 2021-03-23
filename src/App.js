@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
 
-function App() {
+import "./App.css";
+
+function range(n) {
+  let arr = new Array(n);
+  for (let i = 0; i < n; i++) {
+    arr[i] = 0;
+  }
+  return arr;
+}
+
+export default function App() {
+  const [game, setGame] = useState(range(900));
+
+  useEffect(() => {}, [game]);
+
+  function updateKey(n) {
+    let tmp = [...game];
+    if (tmp[n] === 0) {
+      tmp[n] = 1;
+    } else {
+      tmp[n] = 0;
+    }
+    setGame(tmp);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      Conways Life Example
+      <div className="App">
+        {game.map((val, idx) => (
+          <div
+            key={idx}
+            className={val === 1 ? "red" : ""}
+            onMouseEnter={() => updateKey(idx)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
-
-export default App;

@@ -1,38 +1,29 @@
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(30, minmax(1rem, 1fr));
+  grid-auto-rows: 1fr;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App::before {
+  content: '';
+  width: 0;
+  padding-bottom: 100%;
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App > *:first-child {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Just to make the grid visible */
+
+.App > * {
+  background: rgba(0,0,0,0.1);
+  border: 1px white solid;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.red {
+  background: rgba(0,0,0,0.6);;
 }
